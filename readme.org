@@ -1,0 +1,3 @@
+#+title: Least squares algorithm
+
+This JS app can calculate a linear function from emperical function using least squares algorithm.

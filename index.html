@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="lls.js"></script>
+    <script type="text/javascript" src="input.js"></script>
+    <link rel="stylesheet" href="style.css" type="text/css" />
+
+    <!-- Fonts.Google.com -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Zilla+Slab:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>LLS in JS!</title>
+  </head>
+  <body>
+    <h1 class="title titlefont">Linear Least Squares in JavaScript</h1>
+    <p class="author">by Maxim Kuzmin</p>
+    <h3 class="subtitle titlefont">How to use this tool</h3>
+    <div class="text">
+      <ol class="noindent">
+        <li>Input your data points or load a sample</li>
+        <li>Click calculate</li>
+      </ol>
+      <p>
+        You will then see your data points on the graph and a linear approximation of your emperical function.
+      </p>
+      <h3 class="subtitle titlefont">NaNs in input</h3>
+      <p>
+        Any entry that isn't a number (like "test123") or that is empty will be removed from the list.
+      </p>
+    </div>
+    <form id="datapoints_table" target="self">
+      <fieldset>
+        <legend class="titlefont">Data points</legend>
+        <ul id="table_list" class="nobullet noindent">
+        </ul>
+        <script>append_point(); draw_chart();</script>
+        <button class="btn btn-normal" type="button" onclick="append_point()">Add point</button>
+        <button class="btn btn-normal" type="button" onclick="load_sample(); draw_chart();">Load sample data</button>
+        <button class="btn btn-red" type="button" onclick="clear_points(); draw_chart();">Clear</button>
+        <br />
+        <button class="btn btn-green" type="button" onclick="draw_chart()">Calculate</button>
+      </fieldset>
+    </form>
+    <div id="solution" hidden="true">
+      <canvas id="chart" style="margin-top: 1em"></canvas>
+
+    </div>
+  </body>
+</html>

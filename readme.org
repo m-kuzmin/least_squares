@@ -1,3 +1,5 @@
 #+title: Least squares algorithm
 
 This JS app can calculate a linear function from emperical function using least squares algorithm.
+
+[[https://m-kuzmin.github.io/least_squares/][Live Demo]].

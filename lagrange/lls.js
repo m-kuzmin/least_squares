@@ -77,10 +77,16 @@ function draw_chart() {
         lgr_fn.push(new Datapoint(data[0].x + step, y));
     }
 
+    let real_fn = [];
+    for (var i = 0; i< lgr_fn.length; i++) {
+        real_fn.push(new Datapoint(lgr_fn[i].x, Math.sqrt(lgr_fn[i].x, 2) + 2));
+    }
+
     let chartStatus = Chart.getChart("chart");
     if (chartStatus != undefined) {
         chartStatus.destroy();
     }
+
 
     var canvas = document.getElementById('chart');
     var ctx = canvas.getContext('2d');
@@ -100,6 +106,13 @@ function draw_chart() {
                 label: 'Interpolation',
                 data: lgr_fn,
                 tension: .5
+            }, {
+                type: 'line',
+                backgroundColor: '#4e5',
+                borderColor: '#4b9',
+                label: 'y = sqrt(x, 2) + 2',
+                data: real_fn,
+                tension: .5
             }],
         }
     });
@@ -107,12 +120,11 @@ function draw_chart() {
     var err = 0;
     for (var i = 0; i < data.length; i++) {
         var point = data[i];
-        var e = lgr.valueOf(point.x) - point.y;
+        var e = lgr.valueOf(point.x) - Math.sqrt(point.x, 2) + 2;
         err += e * e;
     }
     err = Math.pow(err / data.length, .5).toFixed(6);
-
-    document.getElementById('av_error').innerHTML = `Average error: ${err}`;
+    document.getElementById('av_error').innerHTML = `Average error: ${err}`;   document.getElementById('av_error').innerHTML = `Average error: ${err}`;
 }
 
 function calc_at_x() {
